@@ -1,0 +1,92 @@
+#include <stdio.h>
+void addition(int A[20][20],int B[20][20],int r1,int c1){
+
+int C[20][20];
+ printf("addtion of matrix A and B:\n");
+for(int i=0;i<r1;i++){
+for(int j=0;j<c1;j++){
+    C[i][j]=A[i][j]+B[i][j];
+     printf("%d ",C[i][j]);
+}
+    printf("\n");
+}
+
+}
+void multiplication(int A[20][20],int B[20][20],int r1,int c2,int c1){
+int C[20][20];
+
+ for(int i = 0; i < r1; i++) {
+        for(int j = 0; j < c2; j++) {
+            C[i][j] = 0;
+            for(int k = 0; k < c1; k++) {
+                C[i][j] += A[i][k] * B[k][j];
+            }
+            printf("%d ", C[i][j]);
+        }
+        printf("\n");
+    }
+}
+void transpose(int A[20][20],int r1,int c1){
+    printf("Transpose of matrix A:\n");
+    for(int i=0;i<c1;i++){
+        for(int j=0;j<r1;j++){
+            printf("%d ",A[j][i]);
+        }
+        printf("\n");
+    }
+}
+int main() {
+    int A[20][20], B[20][20];
+    int r1,c1,r2,c2,choice;
+    printf("Enter rows and columns of Matrix A: ");
+    scanf("%d %d",&r1,&c1);
+    printf("Enter rows and columns of Matrix B: ");
+    scanf("%d %d",&r2,&c2);
+    printf("enter the values of matrix A:\n");
+for(int i=0;i<r1;i++)
+for(int j=0;j<c1;j++)
+scanf("%d",&A[i][j]);
+printf("enter the values of matrix B:\n");
+for(int i=0;i<r2;i++)
+for(int j=0;j<c2;j++)
+scanf("%d",&B[i][j]);
+    do {
+        printf("\n--- MENU ---\n");
+        printf("1. Addition\n");
+        printf("2. Multiplication\n");
+        printf("3. Transpose (Matrix A)\n");
+        printf("4. Exit\n");
+        printf("Enter choice: ");
+        scanf("%d", &choice);
+
+        switch(choice) {
+            case 1:
+                if(r1 == r2 && c1 == c2)
+                    addition(A, B, r1,c1);
+                else
+                    printf("Addition not possible!\n");
+                break;
+
+            case 2:if(c1==r2){
+                multiplication(A, B, r1, c2,c1);}
+                else{
+                    printf("Multiplication not possible!\n");
+                }
+                break;
+
+            case 3:
+                transpose(A, r1, c1);
+                break;
+
+            case 4:
+                printf("Exiting...\n");
+                break;
+
+            default:
+                printf("Invalid choice!\n");
+        }
+
+    } while(choice != 4);
+
+    return 0;
+}
